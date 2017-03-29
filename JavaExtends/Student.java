@@ -1,9 +1,9 @@
 package com.lxy.oop;
 
 public class Student extends Person{
-	private String name;
-	private int age;
-	private char sex;
+	//private String name;
+	//private int age;
+	//private char sex;
 	private int number;
 	private String major;
 	private static int count = 0;
@@ -19,7 +19,7 @@ public class Student extends Person{
 	}
 	public void setAge(int age) {
 		if (age<18) {
-			System.out.println("ÄêÁä²»µÃÐ¡ÓÚ18Ëê£¡");
+			System.out.println("å¹´é¾„ä¸å¾—å°äºŽ18å²ï¼");
 			return;
 		}
 		this.age = age;
@@ -56,6 +56,6 @@ public class Student extends Person{
 	}
 	
 	public String toString(){
-		return("ÐÕÃû:"+getName()+",Ñ§ºÅ£º"+number+",×¨Òµ£º"+major);
+		return("å§“å:"+getName()+",å­¦å·ï¼š"+number+",ä¸“ä¸šï¼š"+major);
 	}
 }
