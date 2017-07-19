@@ -40,35 +40,35 @@ public class PurchaseServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-		// »ñÈ¡ÓÃ»§¹ºÂòµÄÉÌÆ·id
+		// è·å–ç”¨æˆ·è´­ä¹°çš„å•†å“id
 		String id = request.getParameter("id");
 		if (id == null) {
-			// Èç¹ûidÎªnullÖØ¶¨Ïòµ½ListBookServletÒ³Ãæ
+			// å¦‚æœidä¸ºnullé‡å®šå‘åˆ°ListBookServleté¡µé¢
 			String url = "ListBookServlet";
 			response.sendRedirect(url);
 			return;
 		}
 
 		Book book = BookDB.getBook(id);
-		// ´´½¨»òÕß»ñµÃÓÃ»§µÄSession¶ÔÏó
+		// åˆ›å»ºæˆ–è€…è·å¾—ç”¨æˆ·çš„Sessionå¯¹è±¡
 		HttpSession session = request.getSession();
-		// ´ÓSessionÖĞ»ñÈ¡ÓÃ»§µÄ¹ºÎï³µ£¬Ê¹ÓÃList¼¯ºÏÄ£Äâ
+		// ä»Sessionä¸­è·å–ç”¨æˆ·çš„è´­ç‰©è½¦ï¼Œä½¿ç”¨Listé›†åˆæ¨¡æ‹Ÿ
 		List<Book> cart = (List) session.getAttribute("cart");
 		if (cart == null) {
-			// Ê×´Î¹ºÂò£¬ÎªÓÃ»§´´½¨Ò»¸ö¹ºÎï³µ
+			// é¦–æ¬¡è´­ä¹°ï¼Œä¸ºç”¨æˆ·åˆ›å»ºä¸€ä¸ªè´­ç‰©è½¦
 			cart = new ArrayList<Book>();
-			// ½«¹ºÎï³µ´æÈëSession¶ÔÏó
+			// å°†è´­ç‰©è½¦å­˜å…¥Sessionå¯¹è±¡
 			session.setAttribute("cart", cart);
 		}
-		//½«ÉÌÆ··ÅÈë¹ºÎï³µ
+		//å°†å•†å“æ”¾å…¥è´­ç‰©è½¦ï¼Œè¿™é‡Œæ²¡æœ‰åšé‡å¤è¯†åˆ«ï¼Œæ‰€ä»¥åŒä¸€æœ¬ä¹¦å¦‚æœè´­ä¹°ä¸¤æ¬¡ä¼šå‡ºç°ä¸¤æ¬¡
 		cart.add(book);
-		//´´½¨cookie´æ·ÅSessionµÄ±êÊ¶ºÅ
+		//åˆ›å»ºcookieå­˜æ”¾Sessionçš„æ ‡è¯†å·
 		Cookie cookie=new Cookie("JSESSIONID", session.getId());
 		cookie.setMaxAge(60*30);
 		cookie.setPath("/");
 		response.addCookie(cookie);
 		
-		//ÖØ¶¨Ïòµ½¹ºÎï³µÒ³Ãæ
+		//é‡å®šå‘åˆ°è´­ç‰©è½¦é¡µé¢
 		String url="CartServlet";
 		response.sendRedirect(url);
 	}
