@@ -1,0 +1,5 @@
+Java学习案例，使用Referer防止盗链
+
+当请求来源不是来自本站的页面时候，会使用RequestDispatcher转向到download.html页面
+
+此时我们再次点击下载的连接时，由于已经有了Referer的信息，刷新页面会出现成功下载的提示。
